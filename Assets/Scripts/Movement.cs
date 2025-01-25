@@ -6,7 +6,11 @@ public class Movement : MonoBehaviour
     public float speed = 1.0f;
     public Rigidbody rb;
     public Animator animator;
-    private bool isJumping = false;
+
+    [SerializeField]
+    private double JUMP_ANIM_START = 0.2;
+    [SerializeField]
+    private double JUMP_ANIM_END = 0.9;
 
     void Start()
     {
@@ -16,23 +20,49 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            isJumping = true;
+        Debug.Log("Current animation " + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+
+        bool canJump = !animator.IsInTransition(0) && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "PBR Frog_Anim_Idle";
+        if (canJump) {
+            if (Input.GetKey(KeyCode.W))
+            {
+                animator.SetTrigger("Jump");
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                animator.SetTrigger("Jump");
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                animator.SetTrigger("Jump");
+            }
         }
-        if (isJumping && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
-        {
-            animator.SetTrigger("Jump");
-            isJumping = false;
-        }
+        
         if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "PBR Frog_Anim_Jump")
         {
-            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.1 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.9)
+            if (Input.GetKey(KeyCode.W))
             {
-                rb.linearVelocity = new Vector3(0, 0, speed * 4);
-            } else 
+                // transform.forward = Camera.main.transform.forward;
+
+                rb.linearVelocity = transform.forward * speed; // Should be camera forward once camera is added
+            }
+            
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < JUMP_ANIM_START) 
             {
                 rb.linearVelocity = new Vector3(0, 0, 0);
+            } else if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > JUMP_ANIM_END)
+            {
+                rb.linearVelocity = new Vector3(0, 0, 0);
+            } else {
+                // Turn frog
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.Rotate(0, -90 * Time.deltaTime, 0);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    transform.Rotate(0, 90 * Time.deltaTime, 0);
+                }
             }
         }
     }
