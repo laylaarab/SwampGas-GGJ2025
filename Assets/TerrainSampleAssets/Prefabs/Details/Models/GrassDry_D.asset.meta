@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b7c401d5ff25f4a0982011e51dee5c66
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4300000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 213198
+  packageName: Unity Terrain - HDRP Demo Scene
+  packageVersion: 1.0.2
+  assetPath: Assets/TerrainSampleAssets/Prefabs/Details/Models/GrassDry_D.asset
+  uploadId: 531742

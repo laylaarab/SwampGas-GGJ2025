@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 368b1dcb9595a4466bc75824bae59578
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 213198
+  packageName: Unity Terrain - HDRP Demo Scene
+  packageVersion: 1.0.2
+  assetPath: Assets/TerrainSampleAssets/Prefabs/Details/GrassDry_B.prefab
+  uploadId: 531742
