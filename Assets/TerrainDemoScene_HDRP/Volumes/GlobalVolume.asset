@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d877ec3e844f2ca46830012e8e79319b, type: 3}
   m_Name: PhysicallyBasedSky
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   rotation:
     m_OverrideState: 0
     m_Value: 0
@@ -770,7 +770,7 @@ MonoBehaviour:
     m_Value: 0
   type:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   atmosphericScattering:
     m_OverrideState: 1
     m_Value: 1
@@ -797,10 +797,10 @@ MonoBehaviour:
     m_Value: 55261.973
   aerosolDensity:
     m_OverrideState: 0
-    m_Value: 0.01192826
+    m_Value: 0.755
   aerosolTint:
     m_OverrideState: 0
-    m_Value: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    m_Value: {r: 0.038047343, g: 0.047169805, b: 0.04017621, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 0
     m_Value: 8289.296
@@ -817,7 +817,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 20000
   groundTint:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {r: 0.12, g: 0.1, b: 0.09, a: 1}
   groundColorTexture:
     m_OverrideState: 0
@@ -1133,15 +1133,15 @@ MonoBehaviour:
     m_Value: 2
   intensity:
     m_OverrideState: 1
-    m_Value: 0.26
+    m_Value: 0.074
   scatter:
     m_OverrideState: 1
-    m_Value: 0.41
+    m_Value: 0.205
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.85337186, b: 0.5896226, a: 1}
+    m_Value: {r: 0.9528302, g: 0.9027693, b: 0.4000089, a: 1}
   dirtTexture:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {fileID: 0}
   dirtIntensity:
     m_OverrideState: 0
