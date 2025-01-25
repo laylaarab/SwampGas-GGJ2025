@@ -27,6 +27,9 @@
 *.uss                   text diff=css linguist-language=css
 *.uxml                  text linguist-language=xml linguist-detectable
 
+Assets/Terrain/** filter=lfs diff=lfs merge=lfs -text
+
+
 # Unity YAML
 *.anim                  unity-yaml
 *.asset                 unity-yaml
