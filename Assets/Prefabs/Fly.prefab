@@ -9,16 +9,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1139.2046
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.6695
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -988.5281
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
       propertyPath: m_LocalRotation.w
@@ -62,14 +74,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2994507175520722006}
+      addedObject: {fileID: 4173694106322287602}
   m_SourcePrefab: {fileID: 100100000, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
 --- !u!1 &5218963264651054389 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f94c072a34b9c42edb3914e4c59d7422, type: 3}
   m_PrefabInstance: {fileID: 4948350577455919204}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2994507175520722006
+--- !u!95 &4173694106322287602
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
