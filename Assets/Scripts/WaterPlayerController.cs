@@ -10,7 +10,8 @@ public class WaterPlayerController : MonoBehaviour
     // References
     public Transform cameraTransform;     // Reference to the camera's transform
     public Transform lookAtTransform;     // The point the camera is looking at (e.g., a target)
-
+    public Transform upperBound;          // The upper bound of the water volume
+    public float upperBoundPadding = 0.5f; // Padding to prevent the frog from going above the water's upper bound
     private Rigidbody rb;
     public Animator animator;
 
@@ -77,6 +78,12 @@ public class WaterPlayerController : MonoBehaviour
 
         Vector3 strafeMovement = transform.right * horizontal * moveSpeed;   // Left/right
         Vector3 verticalMovement = camDirection.normalized * moveSpeed;        // Up/down
+        
+
+        if (verticalMovement.y > 0 && transform.position.y >= (upperBound.position.y + upperBoundPadding))
+        {
+            verticalMovement = Vector3.zero;
+        }
 
         Vector3 target = verticalMovement;
         Vector3 velocityChange = target - rb.linearVelocity;
