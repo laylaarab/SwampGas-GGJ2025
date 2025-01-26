@@ -14,6 +14,8 @@ public class WaterPlayerController : MonoBehaviour
     private Rigidbody rb;
     public Animator animator;
 
+    public Canvas playerHUD;
+
     void Start()
     {
         // Get Rigidbody
@@ -27,7 +29,6 @@ public class WaterPlayerController : MonoBehaviour
             rb.angularDamping = 4f;     // Smooth out rotations
         }
 
-        // Find the camera if it's not assigned
         if (cameraTransform == null && Camera.main != null)
         {
             cameraTransform = Camera.main.transform;
@@ -36,18 +37,15 @@ public class WaterPlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Handle movement and rotation
-        // HandleRotation();
         HandleMovement();
-        HandleVerticalMovement();
+        // HandleVerticalMovement();
     }
+
 
     // Rotate the frog to face the outward direction of the camera (camera's forward direction)
     Vector3 HandleRotation()
     {
         Vector3 lookDirection = lookAtTransform.position - cameraTransform.position;
-        Debug.DrawLine(cameraTransform.position, lookAtTransform.position, Color.red);
-
         Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         
@@ -68,11 +66,6 @@ public class WaterPlayerController : MonoBehaviour
         bool canSwim = !animator.IsInTransition(0) && 
             (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "PBR Frog_Anim_Idle" || animator.GetCurrentAnimatorClipInfo(0)[0].clip.name ==  "PBR Frog_Anim_Idle_Swim");
 
-        // {
-        //     return;
-        //     // animator.SetTrigger("Idle");
-        // }
-
 
         if (canSwim) {
            animator.SetTrigger("Swim");
@@ -80,11 +73,8 @@ public class WaterPlayerController : MonoBehaviour
 
         var camDirection = HandleRotation();
 
-        // Vector3 forwardMovement = transform.forward * vertical * moveSpeed;  // Forward/backward
         Vector3 strafeMovement = transform.right * horizontal * moveSpeed;   // Left/right
         Vector3 verticalMovement = camDirection.normalized * moveSpeed;        // Up/down
-        // Debug.Log("Horizontal: " + horizontal + " Vertical: " + vertical );
-        // Debug.Log("Cam Direction: " + camDirection );
 
         Vector3 target = verticalMovement;
         Vector3 velocityChange = target - rb.linearVelocity;
@@ -95,21 +85,21 @@ public class WaterPlayerController : MonoBehaviour
         }
     }
 
-    // Allow vertical movement (up/down) with Q/E keys
-    void HandleVerticalMovement()
-    {
-        float verticalMovement = 0f;
+    // // Allow vertical movement (up/down) with Q/E keys
+    // void HandleVerticalMovement()
+    // {
+    //     float verticalMovement = 0f;
 
-        if (Input.GetKey(KeyCode.E)) // Move up
-        {
-            verticalMovement = verticalSpeed;
-        }
-        else if (Input.GetKey(KeyCode.Q)) // Move down
-        {
-            verticalMovement = -verticalSpeed;
-        }
+    //     if (Input.GetKey(KeyCode.E)) // Move up
+    //     {
+    //         verticalMovement = verticalSpeed;
+    //     }
+    //     else if (Input.GetKey(KeyCode.Q)) // Move down
+    //     {
+    //         verticalMovement = -verticalSpeed;
+    //     }
 
-        // Add vertical velocity
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, verticalMovement, rb.linearVelocity.z);
-    }
+    //     // Add vertical velocity
+    //     rb.linearVelocity = new Vector3(rb.linearVelocity.x, verticalMovement, rb.linearVelocity.z);
+    // }
 }
