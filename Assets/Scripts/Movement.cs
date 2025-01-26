@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Current animation " + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+        // Debug.Log("Current animation " + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
 
         bool canJump = !animator.IsInTransition(0) && animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "PBR Frog_Anim_Idle";
         if (canJump) {
