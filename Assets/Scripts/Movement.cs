@@ -39,20 +39,15 @@ public class Movement : MonoBehaviour
         }
         
         if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "PBR Frog_Anim_Jump")
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                // transform.forward = Camera.main.transform.forward;
-
-                rb.linearVelocity = transform.forward * speed; // Should be camera forward once camera is added
-            }
-            
+        {            
             if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < JUMP_ANIM_START) 
             {
                 rb.linearVelocity = new Vector3(0, 0, 0);
             } else if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > JUMP_ANIM_END)
             {
                 rb.linearVelocity = new Vector3(0, 0, 0);
+            } else if (Input.GetKey(KeyCode.W)) {
+                rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
             } else {
                 // Turn frog
                 if (Input.GetKey(KeyCode.A))
