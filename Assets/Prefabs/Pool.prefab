@@ -66,9 +66,9 @@ MonoBehaviour:
   maxTessellationFactor: 3
   tessellationFactorFadeStart: 150
   tessellationFactorFadeRange: 1850
-  refractionColor: {r: 0.8562991, g: 0.8562991, b: 0.8562991, a: 1}
-  maxRefractionDistance: 3.5
-  absorptionDistance: 4.9
+  refractionColor: {r: 0.0020148922, g: 0.003932529, b: 0.15071216, a: 1}
+  maxRefractionDistance: 2.08
+  absorptionDistance: 36.3
   scatteringColor: {r: 0.018500218, g: 0.029327273, b: 0.033104762, a: 1}
   ambientScattering: 0.6
   heightScattering: 0.46
@@ -96,7 +96,7 @@ MonoBehaviour:
   volumeDepth: 50
   volumeHeight: 0
   volumePrority: 0
-  absorptionDistanceMultiplier: 15.03
+  absorptionDistanceMultiplier: 2.8
   underWaterAmbientProbeContribution: 1
   underWaterScatteringColorMode: 0
   underWaterScatteringColor: {r: 0, g: 0.27, b: 0.23, a: 1}
@@ -117,15 +117,15 @@ MonoBehaviour:
   ripplesCurrentRegionExtent: {x: 100, y: 100}
   ripplesCurrentRegionOffset: {x: 0, y: 0}
   ripplesCurrentMapInfluence: 1
-  deformation: 0
+  deformation: 1
   deformationRes: 512
   foam: 0
-  foamResolution: 2048
+  foamResolution: 1024
   foamPersistenceMultiplier: 0.5
   foamCurrentInfluence: 0.6
   foamColor: {r: 1, g: 1, b: 1, a: 1}
   foamTextureTiling: 1.43
-  foamSmoothness: 0.3
+  foamSmoothness: 0.306
   simulationFoamAmount: 0.3
   supportSimulationFoamMask: 0
   simulationFoamMask: {fileID: 0}
@@ -188,8 +188,8 @@ MonoBehaviour:
   ripples: 1
   ripplesMotionMode: 0
   ripplesOrientationValue: 0.66
-  ripplesWindSpeed: 3.48
-  ripplesChaos: 0.132
+  ripplesWindSpeed: 2.2
+  ripplesChaos: 0
   ripplesFadeMode: 1
   ripplesFadeStart: 50
   ripplesFadeDistance: 200
