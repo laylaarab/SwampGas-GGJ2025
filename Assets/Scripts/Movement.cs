@@ -17,7 +17,16 @@ public class Movement : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    void FixedUpdate()
+    {
+        // Spring and damper for the frog to keep it upright
+        float springStrength = 1;
+        float damperStrength = 1;
+        var springTorque = springStrength * Vector3.Cross(rb.transform.up, Vector3.up);
+        var dampTorque = damperStrength * -rb.angularVelocity;
+        rb.AddTorque(springTorque + dampTorque, ForceMode.Acceleration);
+    }
+
     void Update()
     {
         Debug.Log("Current animation " + animator.GetCurrentAnimatorClipInfo(0)[0].clip.name);
@@ -46,9 +55,10 @@ public class Movement : MonoBehaviour
             } else if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > JUMP_ANIM_END)
             {
                 rb.linearVelocity = new Vector3(0, 0, 0);
-            } else if (Input.GetKey(KeyCode.W)) {
-                rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
             } else {
+                if (Input.GetKey(KeyCode.W)) {
+                    rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
+                }
                 // Turn frog
                 if (Input.GetKey(KeyCode.A))
                 {
