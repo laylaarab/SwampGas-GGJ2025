@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd82ebc07bc3d74a8a541ff358ee7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyPrefab: {fileID: 0}
+  flyPrefab: {fileID: 7856012719889307070, guid: 4738a2fdf2b5d614991898bd339ff0e7, type: 3}
   boxCollider: {fileID: 7607163924206929070}
 --- !u!1 &7534408558043311658
 GameObject:
@@ -94,7 +94,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

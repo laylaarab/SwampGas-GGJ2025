@@ -10,7 +10,7 @@ public class FlySpawner : MonoBehaviour
     void Start()
     {
         
-        for (int i = 0; i < 150; i++) 
+        for (int i = 0; i < 1000; i++) 
         {
             GameObject fly = Instantiate(flyPrefab, transform, worldPositionStays:false);
 
