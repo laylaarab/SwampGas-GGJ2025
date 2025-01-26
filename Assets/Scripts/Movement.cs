@@ -55,9 +55,10 @@ public class Movement : MonoBehaviour
             } else if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > JUMP_ANIM_END)
             {
                 rb.linearVelocity = new Vector3(0, 0, 0);
-            } else if (Input.GetKey(KeyCode.W)) {
-                rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
             } else {
+                if (Input.GetKey(KeyCode.W)) {
+                    rb.MovePosition(transform.position + transform.forward * speed * Time.deltaTime);
+                }
                 // Turn frog
                 if (Input.GetKey(KeyCode.A))
                 {
