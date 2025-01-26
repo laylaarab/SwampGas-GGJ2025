@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
 
     void Start()
     {
-        
+        animator.SetTrigger("Idle");
     }
 
     void FixedUpdate()
@@ -25,6 +25,11 @@ public class Movement : MonoBehaviour
         var springTorque = springStrength * Vector3.Cross(rb.transform.up, Vector3.up);
         var dampTorque = damperStrength * -rb.angularVelocity;
         rb.AddTorque(springTorque + dampTorque, ForceMode.Acceleration);
+    }
+
+    void OnEnable()
+    {
+        animator.SetTrigger("Idle");
     }
 
     void Update()

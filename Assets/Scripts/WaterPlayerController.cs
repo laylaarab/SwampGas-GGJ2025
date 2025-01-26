@@ -33,6 +33,8 @@ public class WaterPlayerController : MonoBehaviour
         {
             cameraTransform = Camera.main.transform;
         }
+
+        animator.SetTrigger("Swim");
     }
 
     void FixedUpdate()

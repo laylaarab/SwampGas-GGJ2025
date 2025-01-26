@@ -13,7 +13,6 @@ public class Fart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Paying respects");
         if (Input.GetKey(KeyCode.F))
         {
             Instantiate(fart, transform, worldPositionStays:false);

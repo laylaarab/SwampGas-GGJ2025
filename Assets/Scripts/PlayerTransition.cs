@@ -1,4 +1,5 @@
 using System.Collections;
+using Cinemachine;
 using TMPro;
 using UnityEngine;
 public enum PlayerState
@@ -15,11 +16,15 @@ public class PlayerTransition : MonoBehaviour
     public TextMeshProUGUI playerHint;
     public EffectsOverlay effectsOverlay;
     public Transform teleportationPoint;
+    public Rigidbody rb;
+
+    public CinemachineFreeLook freeFlyCamera;
+    public CinemachineVirtualCamera groundCamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentState = PlayerState.Water;
+        ChangeStateToWater();
     }
 
     // Update is called once per frame
@@ -46,28 +51,50 @@ public class PlayerTransition : MonoBehaviour
 
     public IEnumerator TeleportPlayer()
     {
+        effectsOverlay.FadeIn(1.0f);
         yield return new WaitForSeconds(1.0f);
         transform.position = teleportationPoint.position;
-        effectsOverlay.FadeIn(1.0f);
         currentState = PlayerState.Land;
         yield return new WaitForSeconds(1.0f);
         playerHint.gameObject.SetActive(false);
+        ChangeStateToLand();
         playerHint.text = "";
         effectsOverlay.FadeOut(1.0f);
     }
 
+    void ChangeStateToLand()
+    {
+        currentState = PlayerState.Land;
+        rb.useGravity = true;
+        // enable player movement script
+        GetComponent<Movement>().enabled = true;
+        GetComponent<WaterPlayerController>().enabled = false;
+        groundCamera.Priority = 20;
+        freeFlyCamera.Priority = 0;
+    }
+
+    void ChangeStateToWater()
+    {
+        currentState = PlayerState.Water;
+        playerHint.gameObject.SetActive(false);
+        playerHint.text = "";
+        rb.useGravity = false;
+        GetComponent<Movement>().enabled = false;
+        GetComponent<WaterPlayerController>().enabled = true;
+        groundCamera.Priority = 0;
+        freeFlyCamera.Priority = 20;
+    }
+
     void OnTriggerEnter(Collider other)
     {    
-        if (other.gameObject.CompareTag("Water"))
+        if (other.gameObject.CompareTag("Water") && currentState != PlayerState.Water)
         {
-            currentState = PlayerState.Water;
-            Debug.Log("water state");
+            ChangeStateToWater();
         }
         if (other.gameObject.CompareTag("WaterSurface"))
         {
             currentState = PlayerState.WaterSurface;
-            Debug.Log("Water surface collision");
-        }
+        } 
     }
 }
 
