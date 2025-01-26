@@ -34,7 +34,7 @@ public class WaterPlayerController : MonoBehaviour
         }
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         // Handle movement and rotation
         // HandleRotation();
@@ -45,29 +45,12 @@ public class WaterPlayerController : MonoBehaviour
     // Rotate the frog to face the outward direction of the camera (camera's forward direction)
     Vector3 HandleRotation()
     {
-        // if (cameraTransform == null || lookAtTransform == null)
-        // {
-        //     Debug.LogWarning("Make sure both cameraTransform and lookAtTransform are assigned in the Inspector!");
-        //     return;
-        // }
-
-        // Calculate the direction from the camera to the LookAt point
         Vector3 lookDirection = lookAtTransform.position - cameraTransform.position;
         Debug.DrawLine(cameraTransform.position, lookAtTransform.position, Color.red);
 
-        // Ignore vertical (Y-axis) component to keep the rotation aligned to the X-Z plane
-        // lookDirection.y = 0;
-
-        // Ensure there's enough direction vector to rotate towards
-        // if (lookDirection.sqrMagnitude > 0.1f)
-        // {
-            // Debug.Log("ROTATING");
-            // Get the rotation needed to face the calculated direction
-            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
-
-            // Smoothly rotate the frog toward the calculated direction
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-        // }
+        Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        
         return lookDirection;
     }
 
@@ -76,16 +59,25 @@ public class WaterPlayerController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal"); // A/D or Left/Right arrow keys
         float vertical = Input.GetAxis("Vertical");     // W/S or Up/Down arrow keys
-        // float mouseY = Input.GetAxis("Mouse Y");
         
         if (horizontal == 0 && vertical == 0)
         {
             return;
         }
 
+        bool canSwim = !animator.IsInTransition(0) && 
+            (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name == "PBR Frog_Anim_Idle" || animator.GetCurrentAnimatorClipInfo(0)[0].clip.name ==  "PBR Frog_Anim_Idle_Swim");
 
-        animator.SetTrigger("Swim");
-        // var rotationQuaternion = 
+        // {
+        //     return;
+        //     // animator.SetTrigger("Idle");
+        // }
+
+
+        if (canSwim) {
+           animator.SetTrigger("Swim");
+        }
+
         var camDirection = HandleRotation();
 
         // Vector3 forwardMovement = transform.forward * vertical * moveSpeed;  // Forward/backward
@@ -96,8 +88,11 @@ public class WaterPlayerController : MonoBehaviour
 
         Vector3 target = verticalMovement;
         Vector3 velocityChange = target - rb.linearVelocity;
-        Vector3 force = Vector3.ClampMagnitude(velocityChange + strafeMovement, 20);
-        rb.AddForce(force, ForceMode.VelocityChange);
+        if (velocityChange.sqrMagnitude > 0.5f) // Threshold; adjust as needed
+        {
+            Vector3 force = Vector3.ClampMagnitude(velocityChange + strafeMovement, 500);
+            rb.AddForce(force, ForceMode.VelocityChange);
+        }
     }
 
     // Allow vertical movement (up/down) with Q/E keys
